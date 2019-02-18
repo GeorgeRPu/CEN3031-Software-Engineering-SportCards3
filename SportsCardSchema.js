@@ -1,4 +1,3 @@
-/* Import mongoose and define any variables needed to create the schema */
 /* This is only a work in progress and will likely change as the project starts moving along more */
 /* I assume we are going to use mongoose like we learned from the bootcamp assignments */
 
