@@ -15,6 +15,7 @@ var sportsCardSchema = new Schema (
     team: String,
     //collectionInfo: //"any special collection information (tags, [strings])" What data type is this? String array?
     otherInfo: String,
+    quantity: Number,
     sold: Boolean
 });
 
