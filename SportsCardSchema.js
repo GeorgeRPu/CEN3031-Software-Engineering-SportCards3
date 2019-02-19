@@ -1,3 +1,4 @@
+/* Import mongoose and define any variables needed to create the schema */
 /* This is only a work in progress and will likely change as the project starts moving along more */
 /* I assume we are going to use mongoose like we learned from the bootcamp assignments */
 
@@ -6,8 +7,8 @@ var mongoose = require('mongoose'),
 
 var sportsCardSchema = new Schema (
 {
-    //imgFront: { data: Buffer, contentType: String }, //Placeholder, not functional yet. Not sure yet how we will handle images.
-    //imgBack: { data: Buffer, contentType: String },
+    imgFront: String, //If images are stored in the filesystem, this should be the path to the image
+    imgBack: String, //Storing images themselves on mongoDB seems inefficient
     playerName: String,
     year: Date,
     manufacturer: String,
