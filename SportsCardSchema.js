@@ -13,7 +13,7 @@ var sportsCardSchema = new Schema (
     manufacturer: String,
     cardNum: Number,
     team: String,
-    //collectionInfo: //"any special collection information (tags, [strings])" What data type is this? String array?
+    collectionInfo: [String], //Haven't tested this yet
     otherInfo: String,
     quantity: Number,
     sold: Boolean
