@@ -16,7 +16,20 @@ var sportsCardSchema = new Schema (
     collectionInfo: [String], //Haven't tested this yet
     otherInfo: String,
     quantity: Number,
-    sold: Boolean
+    sold: Boolean,
+    created_at: Date,
+    updated_at: Date
+});
+
+sportsCardSchema.pre('save', function(next)
+{
+  var currentTime = new Date;
+  this.updated_at = currentTime;
+  if(!this.created_at)
+  {
+    this.created_at = currentTime;
+  }
+  next();
 });
 
 var Card = mongoose.model('Card', sportsCardSchema);
