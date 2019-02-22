@@ -18,7 +18,8 @@ var sportsCardSchema = new Schema (
     quantity: Number,
     sold: Boolean,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    display: Boolean
 });
 
 sportsCardSchema.pre('save', function(next)
