@@ -3,8 +3,8 @@ var path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('../config'),
-    cardsRouter = require('./routes.js');
+    config = require('./config'),
+    cardsRouter = require('../routes/routes.js');
 
 module.exports.init = function() {
   //connect to database

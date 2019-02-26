@@ -1,4 +1,4 @@
-var cards = require('../controller.js'),
+var cards = require('../controllers/controller.js'),
     express = require('express'),
     router = express.Router();
 

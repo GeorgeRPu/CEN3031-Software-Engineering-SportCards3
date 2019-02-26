@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    Card = require('./cards.js');
+    Card = require('../models/cards.js');
 
 /* Create */
 exports.create = function(req, res)
