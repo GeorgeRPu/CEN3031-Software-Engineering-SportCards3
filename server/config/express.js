@@ -5,6 +5,9 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     config = require('./config'),
     cardsRouter = require('../routes/routes.js');
+    cardsController = require('../controllers/controller.js'),
+    multer = require('multer'),
+    upload = multer({dest: 'client/images/'});
 
 module.exports.init = function() {
   //connect to database
@@ -21,6 +24,12 @@ module.exports.init = function() {
 
   /* Serve static files */
   app.use('/', express.static(__dirname + '/../../client'));
+
+  //Handle file uploads
+  app.post('/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
+    cardsController.addImage(req, res);
+    res.redirect(path.resolve('/'));
+  });
 
   /* Use the cards router for requests to the api */
   app.use('/api/cards', cardsRouter);

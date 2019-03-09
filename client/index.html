@@ -11,7 +11,15 @@
 
     <h1>Content goes here</h1>
 
-
+    <p>Form used to test file uploads, feel free to delete/overwrite</p>
+    <form action="fileupload" method="post" enctype="multipart/form-data" novalidate class="form-group">
+      <b>Player Name:</b> <input type="text" name="playerName" class="form-control" placeholder="Name"></input>
+      <b>Year:</b> <input type="text" name="year" class="form-control" placeholder="Year"></input>
+      <b>Manufacturer:</b> <input type="text" name="manufacturer" class="form-control"  placeholder="Manufacturer"></input>
+      <b>Front Image: </b> <input type="file" name="front">
+      <b>Back Image: </b> <input type="file" name="back">
+      <input type="submit" id="addButton" value="Add"></input>
+    </form>
 
 
 
