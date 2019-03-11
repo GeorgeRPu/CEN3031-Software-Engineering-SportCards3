@@ -1,6 +1,20 @@
 var mongoose = require('mongoose'),
     Card = require('../models/cards.js');
 
+//Associates an image with a card, for now the images are stored in the filesystem
+exports.addImage = function(req, res)
+{
+  var card = new Card(req.body);
+  card.imgFront = req.files['front'][0].filename;
+  card.imgBack = req.files['back'][0].filename;
+
+  card.save(function(err) {
+    if(err) {
+      console.log(err);
+      res.status(400).send(err);
+    };
+  });
+};
 /* Create */
 exports.create = function(req, res)
 {

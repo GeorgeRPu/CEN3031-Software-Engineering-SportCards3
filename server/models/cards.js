@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
 
 var sportsCardSchema = new Schema (
 {
-    imgFront: String, //image path url, not sure yet how images will be handled.
-    imgBack: String, //image path url
+    imgFront: String, //stores the unique filename for now, images are currently stored in the filesystem. To be updated later.
+    imgBack: String,
     playerName: String,
     year: Date,
     manufacturer: String,
