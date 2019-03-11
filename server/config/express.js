@@ -1,13 +1,14 @@
-var path = require('path'),  
-    express = require('express'), 
+var path = require('path'),
+    express = require('express'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    config = require('./config');
+    config = require('./config'),
+    cardsRouter = require('../routes/routes.js');
 
 module.exports.init = function() {
   //connect to database
-  //mongoose.connect(config.db.uri);
+  mongoose.connect(config.db.uri);
 
   //initialize app
   var app = express();
@@ -15,25 +16,19 @@ module.exports.init = function() {
   //enable request logging for development debugging
   app.use(morgan('dev'));
 
-  //http request body parsing middleware 
+  //body parsing middleware
   app.use(bodyParser.json());
 
+  /* Serve static files */
+  app.use('/', express.static(__dirname + '/../../client'));
 
-  /*Serve static files */
-app.use('/',express.static('client'));
-  
-  
- /* other routes go under here */
+  /* Use the cards router for requests to the api */
+  app.use('/api/cards', cardsRouter);
 
-
-
-
-  /*Go to homepage for all routes not specified */ 
-    app.use('/*',function(req,res,next){
-	 res.redirect('/');
+  /* Go to homepage for all routes not specified */
+  app.all('/*', function(req, res) {
+    res.sendFile(path.resolve('/../../client/index.html'));
   });
-  
-  
 
   return app;
-}; 
+};
