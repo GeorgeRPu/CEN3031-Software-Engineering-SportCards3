@@ -11,7 +11,7 @@ angular.module('sportsCardApp',["ngRoute"])
      
   })
   .when("/contact",{
-      templateUrl: "contact.html",
+      templateUrl: "about.html",
       
   })
   .otherwise({
