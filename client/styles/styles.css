@@ -1,0 +1,36 @@
+.space {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.card-img-top {
+    min-width: 100%;
+    max-width:240px;
+    min-height: 350px;
+    max-height:350px;
+    object-fit: cover;
+    border: 4px solid black;
+    box-sizing: border-box
+}
+
+.card-img-top:hover {
+    cursor: pointer;
+}
+
+.img-responsive {
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    border: 2px solid transparent;
+    opacity:0.8;
+}
+
+.card:hover {
+    border: 2px lightskyblue solid;
+    opacity:1;
+}

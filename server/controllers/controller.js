@@ -105,7 +105,7 @@ exports.list = function(req, res)
     }
     else
     {
-      data.sort('playerName');
+      //data.sort('playerName'); //gives me an error
       res.json(data);
     }
   });

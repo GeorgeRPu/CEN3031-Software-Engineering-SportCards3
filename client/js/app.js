@@ -8,14 +8,11 @@ angular.module('sportsCardApp',["ngRoute"])
   })
   .when("/catalog",{
       templateUrl: "catalog.html",
+      controller: 'cardController'
      
   })
-  .when("/contact",{
-      templateUrl: "about.html",
-      
-  })
   .otherwise({
-      templateUrl: "index.html"
+      templateUrl: "about.html"
   });
 });
 
