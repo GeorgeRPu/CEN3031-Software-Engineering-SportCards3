@@ -105,7 +105,15 @@ exports.list = function(req, res)
     }
     else
     {
-      //data.sort('playerName'); //gives me an error
+      data.sort(function(a, b) {
+        if (a.playerName > b.playerName) {
+          return 1;
+        } else if (a.playerName < b.playerName) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
       res.json(data);
     }
   });
