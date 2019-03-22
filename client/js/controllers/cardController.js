@@ -27,11 +27,11 @@ angular.module('sportsCardApp')
 
             $scope.toggleImageSide = function (card) {
 
-                if (document.getElementById(card._id).getAttribute("src") == 'images/' + card.imgBack)
-                    document.getElementById(card._id).setAttribute("src", 'images/' + card.imgFront);
+                if (document.getElementById(card._id).getAttribute("src") == 'https://drive.google.com/uc?id=' + card.imgBack)
+                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgFront);
 
                 else
-                    document.getElementById(card._id).setAttribute("src", 'images/' + card.imgBack);
+                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgBack);
             }
 
             $scope.toggleModalImageSide = function () {

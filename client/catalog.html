@@ -32,7 +32,7 @@
 
     <div class="row">
         <div class="card space" ng-repeat="card in cards | filter:cardSearchText">
-            <img class="card-img-top" id={{card._id}} src={{'images/'+card.imgFront}} ng-click="toggleImageSide(card)"
+            <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="toggleImageSide(card)"
                 alt="Card Image Not Found">
 
             <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            <img src={{'images/'+cardImg}} class="img-responsive" alt="Card Image Not Found" ng-click="toggleModalImageSide()">
+                            <img src="https://drive.google.com/uc?id={{cardImg}}" class="img-responsive" alt="Card Image Not Found" ng-click="toggleModalImageSide()">
 
                         </div>
                         <div class="col-md-6">

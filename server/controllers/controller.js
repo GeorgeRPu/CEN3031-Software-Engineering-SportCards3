@@ -1,5 +1,10 @@
 var mongoose = require('mongoose'),
-    Card = require('../models/cards.js');
+    Card = require('../models/cards.js'),
+    fs = require('fs');
+
+const {google} = require('googleapis');
+const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+const TOKEN_PATH = './server/controllers/token.json';
 
 //Associates an image with a card, for now the images are stored in the filesystem
 exports.addImage = function(req, res)
@@ -8,12 +13,95 @@ exports.addImage = function(req, res)
   card.imgFront = req.files['front'][0].filename;
   card.imgBack = req.files['back'][0].filename;
 
-  card.save(function(err) {
-    if(err) {
-      console.log(err);
-      res.status(400).send(err);
-    };
+  var front = card.imgFront;
+  var back = card.imgBack;
+  var tempFront;
+  var tempBack;
+
+  var fileMetadataFront = {
+    'name': front,
+    'parents':['1eRmiQxN-BXdd7fjDXP3Umrybka4f3vFf']
+  };
+  var mediaFront = {
+    mimeType: 'image/png',
+    body: fs.createReadStream('./client/images/' + front)
+  };
+  var fileMetadataBack = {
+    'name': back,
+    'parents':['1eRmiQxN-BXdd7fjDXP3Umrybka4f3vFf']
+  };
+  var mediaBack = {
+    mimeType: 'image/png',
+    body: fs.createReadStream('./client/images/' + back)
+  };
+
+  fs.readFile('./server/controllers/credentials.json', (err, content) => {
+    if (err) return console.log('Error loading client secret file:', err);
+    // Authorize a client with credentials, then call the Google Drive API.
+
+    authorize(JSON.parse(content), uploadFile);
   });
+  function authorize(credentials, callback) {
+    const {client_secret, client_id, redirect_uris} = credentials.installed;
+    const oAuth2Client = new google.auth.OAuth2(
+        client_id, client_secret, redirect_uris[0]);
+
+    // Check if we have previously stored a token.
+    fs.readFile(TOKEN_PATH, (err, token) => {
+      if (err) console.log("Cannot find token, run setup-drive to generate.");
+      oAuth2Client.setCredentials(JSON.parse(token));
+      callback(oAuth2Client, saveCard);
+    });
+  }
+
+  var uploaded1 = false;
+  var uploaded2 = false;
+  function uploadFile(auth, callback) {
+    const drive = google.drive({version: 'v3', auth});
+    drive.files.create({
+      resource: fileMetadataFront,
+      media: mediaFront,
+      fields: 'id'
+    }, function (err, file) {
+      if (err) {
+        // Handle error
+        console.error(err);
+      } else {
+        console.log('File Id: ', file.data.id);
+        card.imgFront = file.data.id;
+        uploaded1 = true;
+        if(uploaded1 && uploaded2){
+          saveCard();
+        }
+      }
+    });
+    drive.files.create({
+      resource: fileMetadataBack,
+      media: mediaBack,
+      fields: 'id'
+    }, function (err, file) {
+      if (err) {
+        // Handle error
+        console.error(err);
+      } else {
+        console.log('File Id: ', file.data.id);
+        card.imgBack = file.data.id;
+        uploaded2 = true;
+        if(uploaded1 && uploaded2){
+          saveCard();
+        }
+      }
+    });
+  };
+  function saveCard(){
+    card.save(function(err) {
+      console.log("saving");
+      if(err) {
+        console.log(err);
+        res.status(400).send(err);
+      };
+    });
+  }
 };
 /* Create */
 exports.create = function(req, res)
