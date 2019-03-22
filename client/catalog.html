@@ -17,8 +17,7 @@
 
         <div class="col">
             <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort By
                 </button>
 
@@ -32,12 +31,12 @@
 
     <div class="row">
         <div class="card space" ng-repeat="card in cards | filter:cardSearchText">
-            <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="toggleImageSide(card)"
-                alt="Card Image Not Found">
+            <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="toggleImageSide(card)" alt="Card Image Not Found">
 
             <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
                 <h5><strong>Name:</strong> {{card.playerName}}</h5>
-                <p><strong>ID:</strong> {{card._id}}<p>
+                <p><strong>ID:</strong> {{card._id}}
+                    <p>
                         <p><strong>Year:</strong> {{card.year.substring(0,4)}}</p>
                         <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
             </div>
@@ -46,8 +45,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="cardDetailsModal" tabindex="-1" role="dialog" aria-labelledby="cardDetailsModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="cardDetailsModal" tabindex="-1" role="dialog" aria-labelledby="cardDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -56,29 +54,69 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="border: 2px solid red;">
+
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
 
-                            <img src="https://drive.google.com/uc?id={{cardImg}}" class="img-responsive" alt="Card Image Not Found" ng-click="toggleModalImageSide()">
+                    <div class="row" style="border: 2px solid red;">
+
+                        <div class="col-md-7" style="border: 2px solid blue;">
+
+                            <div class="row" >
+                                <!--image back-->
+                                <img src="https://drive.google.com/uc?id={{cardImgBack}}" class="img-responsive" id="imgback" alt="Card Image Not Found">
+
+<!--
+                                 Trigger the Modal 
+                                <img id="myImg" src="img_snow.jpg" alt="Snow" style="width:100%;max-width:300px">
+-->
+
+                                <!-- The Modal -->
+                                <div id="myModal" class="modalImg">
+
+                                    <!-- The Close Button -->
+                                    <span class="close">&times;</span>
+
+                                    <!-- Modal Content (The Image) -->
+                                    <img class="modal-content" id="img01">
+
+<!--
+                                     Modal Caption (Image Text) 
+                                    <div id="caption"></div>
+-->
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col" id="info">
+                                    <strong>ID:</strong> {{cardId}}
+                                    <br><br>
+                                    <strong>Year:</strong> {{cardYear}}
+                                    <br><br>
+                                    <strong>Manufacturer:</strong> {{cardManufacturer}}
+                                    <br><br>
+                                    <strong>Team:</strong> {{cardTeam}}
+                                    <br><br>
+                                    <strong>Card #:</strong> {{cardNum}}
+                                    <br><br>
+                                    <strong>Special Info:</strong> {{cardOtherInfo}}
+                                </div>
+                            </div>
 
                         </div>
-                        <div class="col-md-6">
-                            <strong>ID:</strong> {{cardId}}
-                            <br><br>
-                            <strong>Year:</strong> {{cardYear}}
-                            <br><br>
-                            <strong>Manufacturer:</strong> {{cardManufacturer}}
-                            <br><br>
-                            <strong>Team:</strong> {{cardTeam}}
-                            <br><br>
-                            <strong>Card #:</strong> {{cardNum}}
-                            <br><br>
-                            <strong>Special Info:</strong> {{cardOtherInfo}}
+
+                        <div class="col-md-5" style="border: 2px solid purple;">
+
+                            <!--image front-->
+                            <img src="https://drive.google.com/uc?id={{cardImgFront}}" class="img-responsive" id="imgfront" alt="Card Image Not Found">
+
+
                         </div>
+
+
                     </div>
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
