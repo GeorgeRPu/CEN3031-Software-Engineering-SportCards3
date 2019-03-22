@@ -65,7 +65,7 @@
   transition: 0.3s;
 }
 
-.img-responsive:hover {opacity: 0.7;}
+.img-responsive:hover {opacity: 1;}
 
 /* The Modal (background) */
 .modalImg {
