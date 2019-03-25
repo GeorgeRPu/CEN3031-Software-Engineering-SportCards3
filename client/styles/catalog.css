@@ -11,10 +11,6 @@
     margin: 5%
 }
 
-.col {
-    border: red;
-}
-
 .container {
     border: 2px solid red
 }
@@ -26,6 +22,7 @@
 
 h1 {
     color: #f57836;
+    margin-left: 15px;
 }
 
 #dropdownMenuButton {

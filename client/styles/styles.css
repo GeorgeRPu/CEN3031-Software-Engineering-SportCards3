@@ -32,7 +32,7 @@
 }
 
 .card:hover {
-    border: 2px lightskyblue solid;
+    border: 2px #f57836 solid;
     opacity:1;
 }
 
