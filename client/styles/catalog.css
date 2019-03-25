@@ -23,6 +23,25 @@
         border: 2px solid red
 
 }
+
+#dropdownMenuButton{
+    color:white;
+    background-color:#00529b;
+}
+
+.btn-outline-success{
+    color:#00529b;
+    border-color: #00529b;
+}
+
+#searchbar{
+    width:75%;
+}
+
+.cardInfo{
+    margin:2%;
+}
+
 #imgback{
     margin:2%;
 }

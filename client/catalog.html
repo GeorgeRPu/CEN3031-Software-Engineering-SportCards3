@@ -5,24 +5,25 @@
 <div class="container">
     <div class="row">
 
-        <div class="col">
+        <div class="col" style="border: red 2px solid">
             <div class="search">
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ng-model="cardSearchText">
+                    <input class="form-control mr-sm-2" id="searchbar" type="search" placeholder="Search" aria-label="Search" ng-model="cardSearchText">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </div>
 
 
-        <div class="col">
-            <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="col align-self-center" style="border: blue 2px solid">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sort By
                 </button>
-
-                <div class="dropdown-menu">
-                    ...
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </div>
         </div>
@@ -62,11 +63,11 @@
 
                         <div class="col-md-7" style="border: 2px solid blue;">
 
-                            <div class="row" >
+                            <div class="row">
                                 <!--image back-->
                                 <img src="https://drive.google.com/uc?id={{cardImgBack}}" class="img-responsive" id="imgback" alt="Card Image Not Found">
 
-<!--
+                                <!--
                                  Trigger the Modal 
                                 <img id="myImg" src="img_snow.jpg" alt="Snow" style="width:100%;max-width:300px">
 -->
@@ -80,7 +81,7 @@
                                     <!-- Modal Content (The Image) -->
                                     <img class="modal-content" id="img01">
 
-<!--
+                                    <!--
                                      Modal Caption (Image Text) 
                                     <div id="caption"></div>
 -->
