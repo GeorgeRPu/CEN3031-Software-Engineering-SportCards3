@@ -1,8 +1,13 @@
-<h1> Catalog Page </h1>
+
 
 
 
 <div class="container">
+   <div class="row">
+       <h1> Card Catalog </h1>
+   </div>
+   
+   
     <div class="row">
 
         <div class="col" style="border: red 2px solid">
@@ -30,9 +35,9 @@
 
     </div>
 
-    <div class="row">
+    <div class="row justify-content-center" id="cards">
         <div class="card space" ng-repeat="card in cards | filter:cardSearchText">
-            <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="toggleImageSide(card)" alt="Card Image Not Found">
+            <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal"  alt="Card Image Not Found">
 
             <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
                 <h5><strong>Name:</strong> {{card.playerName}}</h5>
