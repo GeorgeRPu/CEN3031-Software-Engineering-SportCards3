@@ -13,15 +13,14 @@ angular.module('sportsCardApp', ["ngRoute"])
             })
             .when("/adminupload", {
                 templateUrl: "adminupload.html",
-                //                controller: ;
+                
 
             })
             .when("/admincatalog", {
                 templateUrl: "admincatalog.html",
-                //                controller: ;
+                controller: 'cardController',
 
             })
-
             .otherwise({
                 templateUrl: "about.html"
             });
