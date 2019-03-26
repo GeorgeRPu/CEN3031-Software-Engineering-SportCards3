@@ -26,13 +26,12 @@ angular.module('sportsCardApp')
                 $scope.front = true;
             }
 
-            $scope.toggleImageSide = function (card) {
+            $scope.showCardBack = function (card) {
+                document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgBack);
+            }
 
-                if (document.getElementById(card._id).getAttribute("src") == 'https://drive.google.com/uc?id=' + card.imgBack)
-                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgFront);
-
-                else
-                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgBack);
+            $scope.showCardFront = function (card) {
+                document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgFront);
             }
 
             $scope.toggleModalImageSide = function () {
@@ -57,9 +56,5 @@ angular.module('sportsCardApp')
                 $scope.orderByCriteria = criteria;
 
             }
-
-
-
-
 
         });

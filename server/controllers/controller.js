@@ -18,7 +18,7 @@ exports.addImage = function(req, res)
 
   var fileMetadataFront = {
     'name': front,
-    'parents':['1eRmiQxN-BXdd7fjDXP3Umrybka4f3vFf']
+    'parents': ['1eRmiQxN-BXdd7fjDXP3Umrybka4f3vFf']
   };
   var mediaFront = {
     mimeType: 'image/png',
