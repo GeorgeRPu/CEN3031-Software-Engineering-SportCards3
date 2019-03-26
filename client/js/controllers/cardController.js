@@ -49,8 +49,13 @@ angular.module('sportsCardApp')
 
             $scope.orderByCriteria = "";
 
+            $('.dropdown-menu a').click(function () {
+                $('#dropdownMenuButton').text($(this).text());
+            });
+
             $scope.orderBy = function (criteria) {
                 $scope.orderByCriteria = criteria;
+
             }
 
 
