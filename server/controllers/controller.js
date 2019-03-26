@@ -15,8 +15,6 @@ exports.addImage = function(req, res)
 
   var front = card.imgFront;
   var back = card.imgBack;
-  var tempFront;
-  var tempBack;
 
   var fileMetadataFront = {
     'name': front,
@@ -56,7 +54,7 @@ exports.addImage = function(req, res)
 
   var uploaded1 = false;
   var uploaded2 = false;
-  function uploadFile(auth, callback) {
+  function uploadFile(auth) {
     const drive = google.drive({version: 'v3', auth});
     drive.files.create({
       resource: fileMetadataFront,
@@ -67,9 +65,10 @@ exports.addImage = function(req, res)
         // Handle error
         console.error(err);
       } else {
-        console.log('File Id: ', file.data.id);
+        console.log('File Id Front: ', file.data.id);
         card.imgFront = file.data.id;
         uploaded1 = true;
+        fs.unlinkSync('./client/images/' + front) //delete image from filesystem after uploading
         if(uploaded1 && uploaded2){
           saveCard();
         }
@@ -83,10 +82,12 @@ exports.addImage = function(req, res)
       if (err) {
         // Handle error
         console.error(err);
+        res.status(400).send(err);
       } else {
-        console.log('File Id: ', file.data.id);
+        console.log('File Id Back: ', file.data.id);
         card.imgBack = file.data.id;
         uploaded2 = true;
+        fs.unlinkSync('./client/images/' + back)
         if(uploaded1 && uploaded2){
           saveCard();
         }

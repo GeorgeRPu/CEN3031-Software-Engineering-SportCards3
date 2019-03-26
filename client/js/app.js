@@ -1,5 +1,6 @@
 angular.module('sportsCardApp', ["ngRoute"])
 
+
     .config(function ($routeProvider) {
         $routeProvider
             .when("/", {
@@ -25,3 +26,5 @@ angular.module('sportsCardApp', ["ngRoute"])
                 templateUrl: "about.html"
             });
     });
+
+

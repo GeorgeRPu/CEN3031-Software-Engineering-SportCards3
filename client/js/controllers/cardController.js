@@ -7,6 +7,7 @@ angular.module('sportsCardApp')
                 .then(function (response) {
 
                     $scope.cards = response.data;
+                    console.log($scope.cards);
                 })
 
             $scope.showCardDetails = function (card) {
@@ -67,8 +68,23 @@ angular.module('sportsCardApp')
 //                modal.style.display = "none";
 //            }
 
+            $scope.orderByCriteria = "";
+
+            $('.dropdown-menu a').click(function () {
+                $('#dropdownMenuButton').text($(this).text());
+            });
 
             
             
+
+        
+            $scope.orderBy = function (criteria) {
+                $scope.orderByCriteria = criteria;
+
+            }
+
+
+
+
 
         });
