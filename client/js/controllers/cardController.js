@@ -16,7 +16,7 @@ angular.module('sportsCardApp')
             $scope.loadMore = function () {
                 var last = $scope.maxCardsLoaded - 1;
                 for (var i = 1; i <= 8; i++) {
-                    if (last + i > $scope.searchedCards.length)
+                    if ((last + i > $scope.searchedCards.length) || $scope.searchedCards[last + i] == undefined)
                         break
                     $scope.shownCards.push($scope.searchedCards[last + i]);
                     $scope.maxCardsLoaded += 1;
