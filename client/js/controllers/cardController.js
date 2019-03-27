@@ -40,11 +40,11 @@ angular.module('sportsCardApp')
 
             $scope.toggleImageSide = function (card) {
 
-                if (document.getElementById(card._id).getAttribute("src") == 'https://drive.google.com/uc?id=' + card.imgBack)
-                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgFront);
+                if (document.getElementById(card._id).getAttribute("src") == 'https://storage.cloud.google.com/sport-cards-bucket/' + card.imgBack)
+                    document.getElementById(card._id).setAttribute("src", 'https://storage.cloud.google.com/sport-cards-bucket/' + card.imgFront);
 
                 else
-                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgBack);
+                    document.getElementById(card._id).setAttribute("src", 'https://storage.cloud.google.com/sport-cards-bucket/' + card.imgBack);
             }
 
             $scope.toggleModalImageSide = function () {

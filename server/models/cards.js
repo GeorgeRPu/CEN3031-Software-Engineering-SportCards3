@@ -6,7 +6,7 @@ var sportsCardSchema = new Schema (
     imgFront: String, //stores the unique filename for now, images are currently stored in the filesystem. To be updated later.
     imgBack: String,
     playerName: String,
-    year: Date,
+    year: Number,
     manufacturer: String,
     cardNum: Number,
     team: String,

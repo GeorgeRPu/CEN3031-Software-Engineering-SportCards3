@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sports-cards-test",
+  "private_key_id": "aad71b699eaf70c7ef862881170464e0f9cdcf51",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCsFzpChuURmuCD\nRN+/rMXBBDkSYPa2qDXK2TZxTx0ZiLFo1+vGgc9T8jDVJTFRo+L8kQxfdjKq6lNq\nRmdOn2sOk5VdmP0F5xItlR0ZKRwMD+1pwZWu2gqV5wRWufGl4mHAQYA+RygXtptU\nBJuqvI8MmQb303qvUUR+nfOjnCgswr8bep1+eFG1NaS6HWWBCMj0V57Wy7yz7xZp\ndmI9aybzUPwbm5dViZfvEFe42WJv/7MqXVfKPnGpoOdqRMKBmDJYr65H0vuSZSBO\nJgPGrZ0iz/QBcU/M62xxUDR70qEtak8WJ/PuiRLW2lLSIMH4PcctsJcS3dCpTIvp\nQDz4geFRAgMBAAECggEADv3eBi4ktf4pSV4+ZL8LIje5NhPq4jowp3l5P/E9rnwF\nQoYu5MXptx0t6l+ZVoyhqVGEg6tzGgccWbGE7ek+5Q/vzu3VOwaog36OQKMfbaCU\nlOY3oToe+nSb4OdFeSdJzzsVjjdaM4ilqvHU0tCm4JjTLdNHSI8ambIuZ6YirNVs\nuegdiTRubofxos5CmS0YBXzRzHbCzBKcA8nIYfL8gn8nWXDDhZiTBFTqPS5Ncubx\n4xiUvqbML9PdfI7mLdRvtyZCFBgpRrH7liScEH6EkNwfCjJT3c/K3Hpa9kwksMBQ\nETfSEw6dxYpbPhqSmEGgYx0mNyxP9h9dDi+Yw3CqrQKBgQDeNMimZ5NkDVdfa+oh\nZ5BS+ykG7CUrNvTSl7/mJDuNYNNBh4aOPS6R0xWxnuR38OOY8ksGrL6w6HkymIhC\nPqC2O4Ja8Nw3DIi7GE+GgVUde6JlfKbh/LJEJwS7TLItS5n5uEtXViAUYPWfyWZ5\nOU6IMtcXfewwJaDaqlUz25aHlQKBgQDGQ0jgCe0G5u3sZmJ2woHEczhJ0N2B5xgw\n/b47/WnqX7EcUCrrPQHvE8PrRfQgIGnaNXMqiBeFABAHNx+kSoRbemkqNMB5CsDu\nApD3s1VVsy/CIx0h8ysmA4GE1eQzOm2BDNd/gt4OIthG/rybXszHySHVCA6NvZ9U\nwxZDXnpTzQKBgFr3BtFAg5Eo+QTCO8XTDL07vo7r60dmpxDzOIbxfEOjSLiBz665\nEzB1VmMxZdxIDBRX1Cj2XNY1RTBWSym7U7VmZTXvdmc+xVa6XAv3NC3uqAud3P+U\noDHQO1qlyidK1MzrCkTFqDpPex4fp8imkiSlk3I1hZQsQ05g/qJNGbGFAoGBAJmC\nz5JpHRYTCHXacLLzt/acICFHj7tda+XDEuDwPmoy3bfGevTZr/2lmDU7XOLjNhK3\nAA0Wgt+AROjRTbav2/vYtETxw3X1VZz0b7rbKF/K9lejSJNY7TfpzwdDdgYUX2Vk\nxBb/BWB8qmmOJAtJQ9YNbhy8uEgXYp8Gzt4q8RyhAoGBAMijubkbyt4KaU9EWRRQ\n9iQn2ztFwJBj4GL1BGnhoXjkFrlSfCwUvwivPRGjA32grw1FPRuhqvckUydV4R0f\naQsDObckBvhziSxtg4/NLjCZjfFphCD/0DJOoBGLe/bL3+khuq2lgKCY0neXAhuT\nvjCwlYVEZ8+Oo4tzGrRAPJCm\n-----END PRIVATE KEY-----\n",
+  "client_email": "imagehost@sports-cards-test.iam.gserviceaccount.com",
+  "client_id": "117895389984677070989",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/imagehost%40sports-cards-test.iam.gserviceaccount.com"
+}

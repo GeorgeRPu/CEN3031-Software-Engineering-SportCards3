@@ -81,7 +81,7 @@
 </script>
 </head>
 
-<!--<img src="https://drive.google.com/uc?id={{cardImg}}" class="img-responsive" alt="Card Image Not Found" ng-click="toggleModalImageSide()">-->
+<!--<img src="https://https://storage.cloud.google.com/sport-cards-bucket/{{cardImg}}" class="img-responsive" alt="Card Image Not Found" ng-click="toggleModalImageSide()">-->
 
 
 
@@ -114,12 +114,12 @@
     <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
         <div class="row">
             <div class="card space" ng-repeat="card in shownCards">
-                <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
+                <img class="card-img-top" id={{card._id}} src="https://storage.cloud.google.com/sport-cards-bucket/{{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
                 <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
                     <h5><strong>Name:</strong> {{card.playerName}}</h5>
                     <p><strong>ID:</strong> {{card._id}}
                         <p>
-                            <p><strong>Year:</strong> {{card.year.substring(0,4)}}</p>
+                            <p><strong>Year:</strong> {{card.year}}</p>
                             <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                             <div class="row ">
 
                                 <!--image back-->
-                                <img src="https://drive.google.com/uc?id={{cardImgBack}}" class="img-responsive" id="magnified" alt="Card Image Not Found">
+                                <img src="https://storage.cloud.google.com/sport-cards-bucket/{{cardImgBack}}" class="img-responsive" id="magnified" alt="Card Image Not Found">
 
                                 <script>
                                     /* Initiate Magnify Function
@@ -178,7 +178,7 @@ with the id of the image, and the strength of the magnifier glass:*/
                         <div class="col-md-5">
 
                             <!--image front-->
-                            <img src="https://drive.google.com/uc?id={{cardImgFront}}" class="img-responsive" id="imgfront" alt="Card Image Not Found">
+                            <img src="https://storage.cloud.google.com/sport-cards-bucket/{{cardImgFront}}" class="img-responsive" id="imgfront" alt="Card Image Not Found">
 
 
 
