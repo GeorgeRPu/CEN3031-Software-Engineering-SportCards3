@@ -9,17 +9,18 @@
 
 <body>
     <div class="about">
-        <h1>Upload Page</h1>
+        <h1>Admin Upload</h1>
 
 
         <div class="col-6">
             <p>Form used to test file uploads, feel free to delete/overwrite</p>
             <form action="fileupload" method="post" enctype="multipart/form-data" class="form-group">
-                <b>Player Name:</b> <input type="text" name="playerName" class="form-control" placeholder="Name"
-                    required>
+                <b>Player Name:</b> <input type="text" name="playerName" class="form-control" placeholder="Name" required>
                 <b>Year:</b> <input type="text" name="year" class="form-control" placeholder="Year" required>
-                <b>Manufacturer:</b> <input type="text" name="manufacturer" class="form-control" placeholder="Manufacturer"
-                    required>
+                <b>Manufacturer:</b> <input type="text" name="manufacturer" class="form-control" placeholder="Manufacturer" required>
+                <b>Team:</b> <input type="text" name="team" class="form-control" placeholder="Team" required>
+                <b>Card#:</b> <input type="number" name="cardNum" class="form-control" placeholder="Card#" required>
+                <b>Special Info</b> <input type="text" name="specialInfo" class="form-control" placeholder="Special Info" required>
                 <b>Front Image: </b> <input type="file" name="front" accept="image/*" required>
                 <br>
                 <b>Back Image: </b> <input type="file" name="back" accept="image/*" required>
