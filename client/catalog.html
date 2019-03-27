@@ -111,18 +111,18 @@
             </div>
         </div>
     </div>
-     <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
-    <div class="row">
-        <div class="card space" ng-repeat="card in shownCards">
-            <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
-            <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
-                <h5><strong>Name:</strong> {{card.playerName}}</h5>
-                <p><strong>ID:</strong> {{card._id}}
-                    <p>
-                        <p><strong>Year:</strong> {{card.year.substring(0,4)}}</p>
-                        <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
+    <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+        <div class="row">
+            <div class="card space" ng-repeat="card in shownCards">
+                <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
+                <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
+                    <h5><strong>Name:</strong> {{card.playerName}}</h5>
+                    <p><strong>ID:</strong> {{card._id}}
+                        <p>
+                            <p><strong>Year:</strong> {{card.year.substring(0,4)}}</p>
+                            <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
