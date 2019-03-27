@@ -1,6 +1,7 @@
 angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
 
 
+
     .config(function ($routeProvider) {
         $routeProvider
             .when("/", {
