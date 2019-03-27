@@ -5,6 +5,13 @@
     margin-bottom: 10px;
 }
 
+h3{
+margin-top: 25px;
+}
+
+p{
+    font-size: 150%;
+}
 
 .card-img-top {
     min-width: 100%;
@@ -44,4 +51,15 @@
 }
 
 
+.btn-lg{
+    background-color: #00529b;
+}
 
+.btn-lg:hover{
+        background-color: #00529b;
+
+}
+
+#addButton{
+     background-color: #00529b;
+}
