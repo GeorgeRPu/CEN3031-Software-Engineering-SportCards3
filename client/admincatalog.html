@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Catalog</title>
+    <title>Admin Catalog</title>
 
     <style>
         * {box-sizing: border-box;}
@@ -87,12 +87,12 @@
 
 <div class="container">
     <div class="row">
-        <h1> Card Catalog </h1>
+        <h1> Admin Catalog </h1>
     </div>
     <div class="row">
         <div class="search">
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Filter by keyword..." aria-label="Search" ng-model="cardSearchText" ng-change="searchCards(cardSearchText)">
+                <input class="form-control mr-sm-2" type="search" placeholder="Filter by keyword..." aria-label="Search" ng-model="cardSearchText">
             </form>
         </div>
         <div class="dropdown" style="margin-right:50px;margin-top:5%">
@@ -100,20 +100,19 @@
                 sort by
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" ng-click="orderBy('playerName', false)">Name (A-Z)</a>
-                <a class="dropdown-item" ng-click="orderBy('playerName', true)">Name (Z-A)</a>
-                <a class="dropdown-item" ng-click="orderBy('year',false)">Year (Oldest first)</a>
-                <a class="dropdown-item" ng-click="orderBy('year',true)">Year (Newest first)</a>
-                <a class="dropdown-item" ng-click="orderBy('manufacturer',false)">Manufacturer (A-Z)</a>
-                <a class="dropdown-item" ng-click="orderBy('manufacturer',true)">Manufacturer (Z-A)</a>
-                <a class="dropdown-item" ng-click="orderBy('team',false)">Team (A-Z)</a>
-                <a class="dropdown-item" ng-click="orderBy('team',true)">Team (Z-A)</a>
+                <a class="dropdown-item" ng-click="orderBy('playerName')">Name (A-Z)</a>
+                <a class="dropdown-item" ng-click="orderBy('-playerName')">Name (Z-A)</a>
+                <a class="dropdown-item" ng-click="orderBy('year')">Year (Oldest first)</a>
+                <a class="dropdown-item" ng-click="orderBy('-year')">Year (Newest first)</a>
+                <a class="dropdown-item" ng-click="orderBy('manufacturer')">Manufacturer (A-Z)</a>
+                <a class="dropdown-item" ng-click="orderBy('-manufacturer')">Manufacturer (Z-A)</a>
+                <a class="dropdown-item" ng-click="orderBy('team')">Team (A-Z)</a>
+                <a class="dropdown-item" ng-click="orderBy('-team')">Team (Z-A)</a>
             </div>
         </div>
     </div>
-     <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
     <div class="row">
-        <div class="card space" ng-repeat="card in shownCards">
+        <div class="card space" ng-repeat="card in cards | filter:cardSearchText | orderBy:orderByCriteria">
             <img class="card-img-top" id={{card._id}} src="https://drive.google.com/uc?id={{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
             <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
                 <h5><strong>Name:</strong> {{card.playerName}}</h5>
@@ -122,7 +121,6 @@
                         <p><strong>Year:</strong> {{card.year.substring(0,4)}}</p>
                         <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
             </div>
-        </div>
         </div>
     </div>
 </div>
@@ -190,7 +188,11 @@ with the id of the image, and the strength of the magnifier glass:*/
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Card
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+
             </div>
         </div>
     </div>

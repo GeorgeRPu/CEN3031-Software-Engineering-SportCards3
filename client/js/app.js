@@ -1,4 +1,5 @@
-angular.module('sportsCardApp', ["ngRoute"])
+angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
+
 
     .config(function ($routeProvider) {
         $routeProvider
@@ -11,13 +12,19 @@ angular.module('sportsCardApp', ["ngRoute"])
                 controller: 'cardController'
 
             })
-            .when("/admin", {
-                templateUrl: "admin.html"
+            .when("/adminupload", {
+                templateUrl: "adminupload.html",
+                
+
             })
-            .when("/contact", {
-                templateUrl: "contact.html"
+            .when("/admincatalog", {
+                templateUrl: "admincatalog.html",
+                controller: 'cardController',
+
             })
             .otherwise({
                 templateUrl: "about.html"
             });
     });
+
+

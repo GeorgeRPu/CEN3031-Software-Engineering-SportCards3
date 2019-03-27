@@ -1,6 +1,6 @@
 angular.module('sportsCardApp')
     .controller('cardController',
-        function ($scope, $http) {
+        function ($scope, $http, $filter) {
 
             //initial card data
             $http.get(window.location.origin + "/api/cards/")
@@ -8,8 +8,20 @@ angular.module('sportsCardApp')
 
                     $scope.cards = response.data;
                     console.log($scope.cards);
+                    $scope.searchedCards = $scope.cards;
+                    $scope.shownCards = $scope.cards.slice(0, 8);
+                    $scope.maxCardsLoaded = 8;
                 })
 
+            $scope.loadMore = function () {
+                var last = $scope.maxCardsLoaded - 1;
+                for (var i = 1; i <= 8; i++) {
+                    if (last + i > $scope.searchedCards.length)
+                        break
+                    $scope.shownCards.push($scope.searchedCards[last + i]);
+                    $scope.maxCardsLoaded += 1;
+                }
+            };
             $scope.showCardDetails = function (card) {
 
                 $scope.cardId = card._id;
@@ -26,12 +38,13 @@ angular.module('sportsCardApp')
                 $scope.front = true;
             }
 
-            $scope.showCardBack = function (card) {
-                document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgBack);
-            }
+            $scope.toggleImageSide = function (card) {
 
-            $scope.showCardFront = function (card) {
-                document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgFront);
+                if (document.getElementById(card._id).getAttribute("src") == 'https://drive.google.com/uc?id=' + card.imgBack)
+                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgFront);
+
+                else
+                    document.getElementById(card._id).setAttribute("src", 'https://drive.google.com/uc?id=' + card.imgBack);
             }
 
             $scope.toggleModalImageSide = function () {
@@ -45,16 +58,27 @@ angular.module('sportsCardApp')
                 }
             }
 
-
             $scope.orderByCriteria = "";
 
             $('.dropdown-menu a').click(function () {
                 $('#dropdownMenuButton').text($(this).text());
             });
 
-            $scope.orderBy = function (criteria) {
-                $scope.orderByCriteria = criteria;
-
+            $scope.searchCards = function (val) {
+                $scope.searchedCards = $filter('filter')($scope.cards, val);
+                $scope.shownCards = $scope.searchedCards.slice(0, $scope.maxCardsLoaded);
             }
+            $scope.orderBy = function (criteria, reverse) {
+                $scope.searchedCards = $filter('orderBy')($scope.searchedCards, criteria, reverse)
+                $scope.cards = $filter('orderBy')($scope.cards, criteria, reverse)
+                if ($scope.maxCardsLoaded > $scope.searchedCards.length)
+                    $scope.shownCards = $scope.searchedCards.slice(0, $scope.searchedCards.length);
+                else
+                    $scope.shownCards = $scope.searchedCards.slice(0, $scope.maxCardsLoaded);
+            }
+
+
+
+
 
         });

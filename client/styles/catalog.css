@@ -1,17 +1,84 @@
-.navbar-brand{
-    margin-left:2%;
+.img-responsive {
+    /*
+    width: 100%;
+    height: auto;
+    background-size: contain;
+*/
+    object-fit: contain;
+    padding: 3%;
+}
+
+/*
+
+#imgback{
+    width: auto;
+    height: 100%;
+    background-size: contain;
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: scale-down;
+}
+*/
+
+#imageback {
+    /*
+    max-height: 100%;
+    max-width: 100%;
+*/
+}
+
+.navbar-brand {
+    margin-left: 2%;
     color: #00529b;
 }
 
-.about{
+#leftsidemodal {
+
+    /*    margin-right: 2%;*/
+    
+}
+
+.about {
     margin: 5%
-
 }
 
-.search{
-    margin:5%
+.search {
+    margin: 5%
 }
 
-.col{
-    border:red;
+#info {
+    margin: 2%;
+}
+
+h1 {
+    color: #f57836;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+#dropdownMenuButton {
+    color: white;
+    background-color: #00529b;
+}
+
+.btn-outline-success {
+    color: #00529b;
+    border-color: #00529b;
+}
+
+.btn-outline-success:hover {
+    background-color: #00529b;
+    border-color: #00529b;
+}
+
+#searchbar {
+    width: 75%;
+}
+
+.cardInfo {
+    margin: 2%;
+}
+
+#imgback {
+    margin: 2%;
 }
