@@ -157,17 +157,23 @@ with the id of the image, and the strength of the magnifier glass:*/
                             </div>
                             <div class="row">
                                 <div class="col" id="info">
-                                    <strong>ID:</strong> {{cardId}}
-                                    <br><br>
-                                    <strong>Year:</strong> {{cardYear}}
-                                    <br><br>
-                                    <strong>Manufacturer:</strong> {{cardManufacturer}}
-                                    <br><br>
-                                    <strong>Team:</strong> {{cardTeam}}
-                                    <br><br>
-                                    <strong>Card #:</strong> {{cardNum}}
-                                    <br><br>
-                                    <strong>Special Info:</strong> {{cardOtherInfo}}
+                                    <form action="">
+                                        <strong>ID:</strong> {{cardId}}
+                                        <br><br>
+                                        <strong>Year:</strong> {{cardYear}}
+                                        <input class="form-control input-sm" value="{{cardYear}} " id="inputsm" type="text">
+                                        <strong>Manufacturer:</strong> {{cardManufacturer}}
+
+                                        <input class="form-control input-sm" value="{{cardManufacturer}} " id="inputsm" type="text">
+
+                                        <strong>Team:</strong> {{cardTeam}}
+                                        <input class="form-control input-sm" value="{{cardTeam}} " id="inputsm" type="text">
+                                        <strong>Card #:</strong> {{cardNum}}
+                                        <input class="form-control input-sm" value="{{cardNum}} " id="inputsm" type="text">
+                                        <strong>Special Info:</strong> 
+                                        <input class="form-control input-sm" value="{{cardNum}} " id="inputsm" type="text">
+                                        {{cardOtherInfo}}
+                                    </form>
                                 </div>
                             </div>
 
