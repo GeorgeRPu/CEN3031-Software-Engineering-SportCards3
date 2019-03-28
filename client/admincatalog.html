@@ -1,84 +1,97 @@
-<!DOCTYPE html>
-<html lang="">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Catalog</title>
 
     <style>
-        * {box-sizing: border-box;}
+        * {
+            box-sizing: border-box;
+        }
 
-.img-magnifier-container {
-  position:relative;
-}
+        .img-magnifier-container {
+            position: relative;
+        }
 
-.img-magnifier-glass {
-  position: absolute;
-  border: 3px solid #000;
-  border-radius: 50%;
-  cursor: none;
-  /*Set the size of the magnifier glass:*/
-  width: 100px;
-  height: 100px;
-}
-</style>
+        .img-magnifier-glass {
+            position: absolute;
+            border: 3px solid #000;
+            border-radius: 50%;
+            cursor: none;
+            /*Set the size of the magnifier glass:*/
+            width: 100px;
+            height: 100px;
+        }
+    </style>
     <script>
         function magnify(imgID, zoom) {
-  var img, glass, w, h, bw;
-  img = document.getElementById(imgID);
-  /*create magnifier glass:*/
-  glass = document.createElement("DIV");
-  glass.setAttribute("class", "img-magnifier-glass");
-  /*insert magnifier glass:*/
-  img.parentElement.insertBefore(glass, img);
-  /*set background properties for the magnifier glass:*/
-  glass.style.backgroundImage = "url('" + img.src + "')";
-  glass.style.backgroundRepeat = "no-repeat";
-  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
-  bw = 3;
-  w = glass.offsetWidth / 2;
-  h = glass.offsetHeight / 2;
-  /*execute a function when someone moves the magnifier glass over the image:*/
-  glass.addEventListener("mousemove", moveMagnifier);
-  img.addEventListener("mousemove", moveMagnifier);
-  /*and also for touch screens:*/
-  glass.addEventListener("touchmove", moveMagnifier);
-  img.addEventListener("touchmove", moveMagnifier);
-  function moveMagnifier(e) {
-    var pos, x, y;
-    /*prevent any other actions that may occur when moving over the image*/
-    e.preventDefault();
-    /*get the cursor's x and y positions:*/
-    pos = getCursorPos(e);
-    x = pos.x;
-    y = pos.y;
-    /*prevent the magnifier glass from being positioned outside the image:*/
-    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
-    if (x < w / zoom) {x = w / zoom;}
-    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
-    if (y < h / zoom) {y = h / zoom;}
-    /*set the position of the magnifier glass:*/
-    glass.style.left = (x - w) + "px";
-    glass.style.top = (y - h) + "px";
-    /*display what the magnifier glass "sees":*/
-    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
-  }
-  function getCursorPos(e) {
-    var a, x = 0, y = 0;
-    e = e || window.event;
-    /*get the x and y positions of the image:*/
-    a = img.getBoundingClientRect();
-    /*calculate the cursor's x and y coordinates, relative to the image:*/
-    x = e.pageX - a.left;
-    y = e.pageY - a.top;
-    /*consider any page scrolling:*/
-    x = x - window.pageXOffset;
-    y = y - window.pageYOffset;
-    return {x : x, y : y};
-  }
-}
-</script>
+            var img, glass, w, h, bw;
+            img = document.getElementById(imgID);
+            /*create magnifier glass:*/
+            glass = document.createElement("DIV");
+            glass.setAttribute("class", "img-magnifier-glass");
+            /*insert magnifier glass:*/
+            img.parentElement.insertBefore(glass, img);
+            /*set background properties for the magnifier glass:*/
+            glass.style.backgroundImage = "url('" + img.src + "')";
+            glass.style.backgroundRepeat = "no-repeat";
+            glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+            bw = 3;
+            w = glass.offsetWidth / 2;
+            h = glass.offsetHeight / 2;
+            /*execute a function when someone moves the magnifier glass over the image:*/
+            glass.addEventListener("mousemove", moveMagnifier);
+            img.addEventListener("mousemove", moveMagnifier);
+            /*and also for touch screens:*/
+            glass.addEventListener("touchmove", moveMagnifier);
+            img.addEventListener("touchmove", moveMagnifier);
+
+            function moveMagnifier(e) {
+                var pos, x, y;
+                /*prevent any other actions that may occur when moving over the image*/
+                e.preventDefault();
+                /*get the cursor's x and y positions:*/
+                pos = getCursorPos(e);
+                x = pos.x;
+                y = pos.y;
+                /*prevent the magnifier glass from being positioned outside the image:*/
+                if (x > img.width - (w / zoom)) {
+                    x = img.width - (w / zoom);
+                }
+                if (x < w / zoom) {
+                    x = w / zoom;
+                }
+                if (y > img.height - (h / zoom)) {
+                    y = img.height - (h / zoom);
+                }
+                if (y < h / zoom) {
+                    y = h / zoom;
+                }
+                /*set the position of the magnifier glass:*/
+                glass.style.left = (x - w) + "px";
+                glass.style.top = (y - h) + "px";
+                /*display what the magnifier glass "sees":*/
+                glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+            }
+
+            function getCursorPos(e) {
+                var a, x = 0,
+                    y = 0;
+                e = e || window.event;
+                /*get the x and y positions of the image:*/
+                a = img.getBoundingClientRect();
+                /*calculate the cursor's x and y coordinates, relative to the image:*/
+                x = e.pageX - a.left;
+                y = e.pageY - a.top;
+                /*consider any page scrolling:*/
+                x = x - window.pageXOffset;
+                y = y - window.pageYOffset;
+                return {
+                    x: x,
+                    y: y
+                };
+            }
+        }
+    </script>
 </head>
 
 <!--<img src="https://https://storage.cloud.google.com/sport-cards-bucket/{{cardImg}}" class="img-responsive" alt="Card Image Not Found" ng-click="toggleModalImageSide()">-->
@@ -92,40 +105,54 @@
     <div class="row">
         <div class="search">
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Filter by keyword..." aria-label="Search" ng-model="cardSearchText">
+                <input class="form-control mr-sm-2" type="search" placeholder="Filter by keyword..." aria-label="Search"
+                    ng-model="cardSearchText" ng-change="searchCards(cardSearchText)">
             </form>
         </div>
         <div class="dropdown" style="margin-right:50px;margin-top:5%">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sort By
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" ng-click="orderBy('playerName')">Name (A-Z)</a>
-                <a class="dropdown-item" ng-click="orderBy('-playerName')">Name (Z-A)</a>
-                <a class="dropdown-item" ng-click="orderBy('year')">Year (Oldest first)</a>
-                <a class="dropdown-item" ng-click="orderBy('-year')">Year (Newest first)</a>
-                <a class="dropdown-item" ng-click="orderBy('manufacturer')">Manufacturer (A-Z)</a>
-                <a class="dropdown-item" ng-click="orderBy('-manufacturer')">Manufacturer (Z-A)</a>
-                <a class="dropdown-item" ng-click="orderBy('team')">Team (A-Z)</a>
-                <a class="dropdown-item" ng-click="orderBy('-team')">Team (Z-A)</a>
+                <a class="dropdown-item" ng-click="orderBy('playerName',false)">Name (A-Z)</a>
+                <a class="dropdown-item" ng-click="orderBy('playerName',true)">Name (Z-A)</a>
+                <a class="dropdown-item" ng-click="orderBy('year',false)">Year (Oldest first)</a>
+                <a class="dropdown-item" ng-click="orderBy('year',true)">Year (Newest first)</a>
+                <a class="dropdown-item" ng-click="orderBy('manufacturer',false)">Manufacturer (A-Z)</a>
+                <a class="dropdown-item" ng-click="orderBy('manufacturer',true)">Manufacturer (Z-A)</a>
+                <a class="dropdown-item" ng-click="orderBy('team',false)">Team (A-Z)</a>
+                <a class="dropdown-item" ng-click="orderBy('team',true)">Team (Z-A)</a>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="card space" ng-repeat="card in cards | filter:cardSearchText | orderBy:orderByCriteria">
-            <img class="card-img-top" id={{card._id}} src="https://storage.cloud.google.com/sport-cards-bucket/{{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
-            <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
-                <h5><strong>Name:</strong> {{card.playerName}}</h5>
-                <p><strong>ID:</strong> {{card._id}}
-                    <p>
-                        <p><strong>Year:</strong> {{card.year.substring(0,4)}}</p>
-                        <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
+
+    <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+        <div class="row">
+            <div class="card space" ng-repeat="card in shownCards">
+                <img class="card-img-top" id={{card._id}}
+                    src="https://storage.cloud.google.com/sport-cards-bucket/{{card.imgFront}}"
+                    ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
+                <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal"
+                    ng-click="showCardDetails(card)">
+                    <h5><strong>Name:</strong> {{card.playerName}}</h5>
+                    <p><strong>ID:</strong> {{card._id}}
+                        <p>
+                            <p><strong>Year:</strong> {{card.year}}</p>
+                            <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
+                            <br>
+                </div>
+                <button type="button" id="deleteCardButton" data-dismiss="modal" class="btn btn-danger btn-sm"
+                    ng-click="deleteCard(card)">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="cardDetailsModal" tabindex="-1" role="dialog" aria-labelledby="cardDetailsModalLabel" aria-hidden="true">
+<iframe name="hiddenFrame" class="hide"></iframe>
+
+<div class="modal fade" id="cardDetailsModal" tabindex="-1" role="dialog" aria-labelledby="cardDetailsModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -145,34 +172,50 @@
                             <div class="row ">
 
                                 <!--image back-->
-                                <img src="https://https://storage.cloud.google.com/sport-cards-bucket/{{cardImgBack}}" class="img-responsive" id="magnified" alt="Card Image Not Found">
+                                <img src="https://storage.cloud.google.com/sport-cards-bucket/{{cardImgBack}}"
+                                    class="img-responsive" id="magnified" alt="Card Image Not Found">
 
                                 <script>
                                     /* Initiate Magnify Function
 with the id of the image, and the strength of the magnifier glass:*/
-        magnify("magnified", 3);
-
-    </script>
+                                    magnify("magnified", 3);
+                                </script>
 
                             </div>
                             <div class="row">
                                 <div class="col" id="info">
-                                    <form action="">
-                                        <strong>ID:</strong> {{cardId}}
-                                        <br><br>
-                                        <strong>Year:</strong> {{cardYear}}
-                                        <input class="form-control input-sm" value="{{cardYear}} " id="inputsm" type="text">
-                                        <strong>Manufacturer:</strong> {{cardManufacturer}}
+                                    <form id="cardEditForm" method="POST" action={{"/api/cards/"+cardId+"?_method=PUT"}}
+                                        target="hiddenFrame" ng-submit="cardEdited()">
+                                        <input type="hidden" name="_METHOD" value="PUT">
 
-                                        <input class="form-control input-sm" value="{{cardManufacturer}} " id="inputsm" type="text">
+                                        <strong>ID:</strong>
+                                        <input class="form-control input-sm" value={{cardId}} id="inputsm" type="text"
+                                            disabled>
 
-                                        <strong>Team:</strong> {{cardTeam}}
-                                        <input class="form-control input-sm" value="{{cardTeam}} " id="inputsm" type="text">
-                                        <strong>Card #:</strong> {{cardNum}}
-                                        <input class="form-control input-sm" value="{{cardNum}} " id="inputsm" type="text">
+                                        <strong>Player Name:</strong>
+                                        <input class="form-control input-sm" ng-model="cardName" id="inputsm"
+                                            name="playerName" type="text">
+
+                                        <strong>Year:</strong>
+                                        <input class="form-control input-sm" ng-model="cardYear" id="inputsm"
+                                            name="year" type="text">
+
+                                        <strong>Manufacturer:</strong>
+                                        <input class="form-control input-sm" ng-model="cardManufacturer" id="inputsm"
+                                            name="manufacturer" type="text">
+
+                                        <strong>Team:</strong>
+                                        <input class="form-control input-sm" ng-model="cardTeam" id="inputsm"
+                                            name="team" type="text">
+
+                                        <strong>Card #:</strong>
+                                        <input class="form-control input-sm" ng-model="cardNum" id="inputsm"
+                                            name="cardNum" type="text">
+
                                         <strong>Special Info:</strong>
-                                        <input class="form-control input-sm" value="{{cardNum}} " id="inputsm" type="text">
-                                        {{cardOtherInfo}}
+                                        <input class="form-control input-sm" ng-model="cardOtherInfo" id="inputsm"
+                                            name="otherInfo" type="text">
+
                                     </form>
                                 </div>
                             </div>
@@ -182,7 +225,8 @@ with the id of the image, and the strength of the magnifier glass:*/
                         <div class="col-md-5">
 
                             <!--image front-->
-                            <img src="https://https://storage.cloud.google.com/sport-cards-bucket/{{cardImgFront}}" class="img-responsive" id="imgfront" alt="Card Image Not Found">
+                            <img src="https://storage.cloud.google.com/sport-cards-bucket/{{cardImgFront}}"
+                                class="img-responsive" id="imgfront" alt="Card Image Not Found">
 
 
 
@@ -194,10 +238,9 @@ with the id of the image, and the strength of the magnifier glass:*/
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Delete Card
-                </button>
+
+                <input class="btn btn-success" form="cardEditForm" type="submit" value="Save changes">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
 
             </div>
         </div>
@@ -205,7 +248,3 @@ with the id of the image, and the strength of the magnifier glass:*/
 
 
 </div>
-
-
-
-</html>

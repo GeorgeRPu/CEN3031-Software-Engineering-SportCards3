@@ -8,6 +8,7 @@ var path = require('path'),
     cardsController = require('../controllers/controller.js'),
     multer = require('multer'),
     upload = multer({dest: 'client/images/'});
+    methodOverride = require('method-override');
 
 module.exports.init = function() {
   //connect to database
@@ -20,7 +21,11 @@ module.exports.init = function() {
   app.use(morgan('dev'));
 
   //body parsing middleware
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+
+  //to be able to send PUT requests with form
+  app.use(methodOverride('_method'));
 
   /* Serve static files */
   app.use('/', express.static(__dirname + '/../../client'));

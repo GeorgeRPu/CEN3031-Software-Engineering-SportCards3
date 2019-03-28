@@ -20,7 +20,7 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
             })
             .when("/admincatalog", {
                 templateUrl: "admincatalog.html",
-                controller: 'cardController',
+                controller: 'cardController'
 
             })
             .otherwise({
