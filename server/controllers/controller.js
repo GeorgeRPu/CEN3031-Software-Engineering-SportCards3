@@ -6,8 +6,8 @@ const {
   Storage
 } = require('@google-cloud/storage');
 const storage = new Storage({
-  projectId: 'sports-cards-test',
-  credentials: process.env.GOOGLE_APPLICATION_CREDENTIALS
+    projectId: 'sports-cards-test',
+    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
 });
 
 
