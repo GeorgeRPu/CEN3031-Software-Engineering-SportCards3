@@ -98,7 +98,10 @@ exports.update = function(req, res)
 exports.delete = function(req, res) {
   var card = req.card;
 
-  Card.findOneAndRemove({'_id': card.id}, function(err)
+  bucket.file(card.imgFront).delete();
+  bucket.file(card.imgBack).delete();
+
+  Card.findOneAndRemove({'_id': card._id}, function(err)
   {
     if(err)
     {
