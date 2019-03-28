@@ -123,7 +123,10 @@ exports.update = function (req, res) {
 exports.delete = function (req, res) {
   var card = req.card;
 
+  if(card.imgFront)
   bucket.file(card.imgFront).delete();
+
+  if(card.imgBack)
   bucket.file(card.imgBack).delete();
 
   Card.findOneAndRemove({
