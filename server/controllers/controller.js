@@ -24,8 +24,16 @@ exports.addImage = async function (req, res) {
   var front = card.imgFront;
   var back = card.imgBack;
 
-  await bucket.upload(path + front, {});
-  await bucket.upload(path + back, {});
+  await bucket.upload(path + front, {
+    metadata: {
+      contentType: "image/png"
+    }
+  });
+  await bucket.upload(path + back, {
+    metadata: {
+      contentType: "image/png"
+    }
+  });
 
   fs.unlinkSync(path + front);
   fs.unlinkSync(path + back);
