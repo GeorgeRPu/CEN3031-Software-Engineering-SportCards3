@@ -133,7 +133,7 @@
         <div class="row">
             <div class="card space" ng-repeat="card in shownCards">
                 <img class="card-img-top" id={{card._id}}
-                    src="//storage.cloud.google.com/sport-cards-bucket/{{card.imgFront}}"
+                    src="//storage.cloud.google.com/sport-cards-bucket/static/{{card.imgFront}}"
                     ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
                 <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal"
                     ng-click="showCardDetails(card)">
@@ -169,7 +169,7 @@
                             <div class="row ">
 
                                 <!--image back-->
-                                <img src="//storage.cloud.google.com/sport-cards-bucket/{{cardImgBack}}"
+                                <img src="//storage.cloud.google.com/sport-cards-bucket/static/{{cardImgBack}}"
                                     class="img-responsive" id="magnified" alt="Card Image Not Found">
 
                                 <script>
@@ -200,7 +200,7 @@ with the id of the image, and the strength of the magnifier glass:*/
                         <div class="col-md-5">
 
                             <!--image front-->
-                            <img src="//storage.cloud.google.com/sport-cards-bucket/{{cardImgFront}}"
+                            <img src="//storage.cloud.google.com/sport-cards-bucket/static/{{cardImgFront}}"
                                 class="img-responsive" id="imgfront" alt="Card Image Not Found">
 
 
