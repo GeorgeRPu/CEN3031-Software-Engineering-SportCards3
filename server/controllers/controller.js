@@ -26,12 +26,14 @@ exports.addImage = async function (req, res) {
 
   await bucket.upload(path + front, {
     metadata: {
-      contentType: "image/png"
+      contentType: "image/png",
+      cacheControl: 'public, max-age=31536000'
     }
   });
   await bucket.upload(path + back, {
     metadata: {
-      contentType: "image/png"
+      contentType: "image/png",
+      cacheControl: 'public, max-age=31536000'
     }
   });
 
