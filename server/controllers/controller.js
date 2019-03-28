@@ -27,8 +27,8 @@ exports.addImage = async function (req, res) {
   await bucket.upload(path + front, {});
   await bucket.upload(path + back, {});
 
-  fs.unlink(path + front);
-  fs.unlink(path + back);
+  fs.unlinkSync(path + front);
+  fs.unlinkSync(path + back);
 
   card.save(function (err) {
     console.log("saving");
