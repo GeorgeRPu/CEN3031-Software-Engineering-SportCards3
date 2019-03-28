@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 const {Storage} = require('@google-cloud/storage');
 const storage = new Storage({
   projectId: 'sports-cards-test',
-  keyFilename: './server/config/Sports-Cards-Test-aad71b699eaf.json'
+  keyFilename: './server/config/Sports-Cards-Test-d297e1566afe.json'
 });
 
 const bucketName = 'sport-cards-bucket';
