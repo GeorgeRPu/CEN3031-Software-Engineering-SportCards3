@@ -7,8 +7,8 @@ const {
 } = require('@google-cloud/storage');
 const storage = new Storage({
     projectId: 'sports-cards-test',
-    //credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS) //Uncomment this for heroku, comment out for localhost
-    keyFilename: './server/config/Sports-Cards-Test-d297e1566afe.json' //Uncomment this for localhost, comment out for heroku
+    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS) //Uncomment this for heroku, comment out for localhost
+    //keyFilename: './server/config/Sports-Cards-Test-d297e1566afe.json' //Uncomment this for localhost, comment out for heroku
 });
 
 
@@ -16,8 +16,9 @@ const bucketName = 'sport-cards-bucket';
 const bucket = storage.bucket(bucketName);
 
 //uploads images to google cloud, saves new card
-exports.addImage = async function (req, res) {
+exports.create = async function (req, res) {
   var card = new Card(req.body);
+  card.otherInfo = req.body.specialInfo.split(", ");
   card.imgFront = req.files['front'][0].filename;
   card.imgBack = req.files['back'][0].filename;
   var path = './client/images/';
@@ -26,13 +27,13 @@ exports.addImage = async function (req, res) {
 
   await bucket.upload(path + front, {
     metadata: {
-      contentType: "image/png",
+      contentType: "image/*",
       cacheControl: 'public, max-age=31536000'
     }
   });
   await bucket.upload(path + back, {
     metadata: {
-      contentType: "image/png",
+      contentType: "image/*",
       cacheControl: 'public, max-age=31536000'
     }
   });
@@ -46,20 +47,6 @@ exports.addImage = async function (req, res) {
       console.log(err);
       res.status(400).send(err);
     };
-  });
-};
-/* Create */
-exports.create = function (req, res) {
-
-  var card = new Card(req.body);
-
-  card.save(function (err) {
-    if (err) {
-      console.log(err);
-      res.status(400).send(err);
-    } else {
-      res.json(card);
-    }
   });
 };
 
@@ -99,9 +86,6 @@ exports.update = function (req, res) {
 
     if (req.body.team)
       card.team = req.body.team;
-
-    if (req.body.collectionInfo)
-      card.collectionInfo = req.body.collectionInfo;
 
     if (req.body.otherInfo)
       card.otherInfo = req.body.otherInfo;
