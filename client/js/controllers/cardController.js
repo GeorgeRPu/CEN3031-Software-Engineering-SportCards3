@@ -30,7 +30,7 @@ angular.module('sportsCardApp')
                 $scope.cardManufacturer = card.manufacturer;
                 $scope.cardTeam = card.team;
                 $scope.cardNum = card.cardNum;
-                $scope.cardOtherInfo = card.otherInfo;
+                $scope.cardOtherInfo = card.otherInfo[0];
                 $scope.cardImgBack = card.imgBack;
                 $scope.cardImgFront = card.imgFront;
 
