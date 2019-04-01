@@ -33,7 +33,7 @@ module.exports.init = function() {
   //Handle file uploads
   app.post('/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
     cardsController.create(req, res);
-    res.redirect(path.resolve('/'));
+    res.redirect(path.resolve('/#!/adminupload'));
   });
 
   /* Use the cards router for requests to the api */
