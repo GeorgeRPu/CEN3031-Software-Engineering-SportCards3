@@ -6,6 +6,19 @@
 */
     object-fit: contain;
     padding: 3%;
+    transition: transform .2s;
+}
+
+.img-responsive:hover {
+    transform: scale(1.05)
+}
+
+.card-img-top {
+    transition: transform .2s;
+}
+
+.card-img-top:hover {
+    transform: scale(1.05)
 }
 
 /*
