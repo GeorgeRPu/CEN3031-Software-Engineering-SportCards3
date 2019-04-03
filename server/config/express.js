@@ -7,7 +7,7 @@ var path = require('path'),
     cardsRouter = require('../routes/routes.js');
     cardsController = require('../controllers/controller.js'),
     multer = require('multer'),
-    upload = multer({dest: 'client/images/'});
+    upload = multer({dest: 'admin/images/'});
     methodOverride = require('method-override');
 
 module.exports.init = function() {
@@ -28,21 +28,28 @@ module.exports.init = function() {
   app.use(methodOverride('_method'));
 
   /* Serve static files */
-  app.use('/', express.static(__dirname + '/../../client'));
+
+    app.use('/', express.static(__dirname + '/../../client'));
+    app.use('/admin', express.static(__dirname + '/../../admin'));
 
   //Handle file uploads
-  app.post('/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
-    cardsController.create(req, res);
-    res.redirect(path.resolve('/'));
-  });
+    app.post(path.resolve('../', '/fileupload'), upload.fields([{ name: 'front' }, { name: 'back' }]), function (req, res, next) {
+        cardsController.create(req, res);
+        res.redirect(path.resolve('/#!/'));
+    });
 
   /* Use the cards router for requests to the api */
   app.use('/api/cards', cardsRouter);
 
+ 
+
   /* Go to homepage for all routes not specified */
   app.all('/*', function(req, res) {
     res.sendFile(path.resolve('/../../client/index.html'));
-  });
+    });
+    app.all('/admin/*', function (req, res) {
+        res.sendFile(path.resolve('/../../admin/index.html'));
+    });
 
   return app;
 };

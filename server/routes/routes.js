@@ -4,8 +4,10 @@ var cards = require('../controllers/controller.js'),
 
 router.route('/')
   .get(cards.list)
-  .post(cards.create);
-
+  //.post(cards.create);
+router.route('/admin')
+    .get(cards.list)
+    .post(cards.create);
 router.route('/:cardId')
   .get(cards.read)
   .put(cards.update)

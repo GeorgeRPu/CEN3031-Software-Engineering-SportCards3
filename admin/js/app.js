@@ -5,12 +5,17 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
     .config(function ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "about.html",
+                templateUrl: "login.html",
 
             })
             .when("/catalog", {
-                templateUrl: "catalog.html",
+                templateUrl: "admincatalog.html",
                 controller: 'cardController'
+
+            })
+            .when("/upload", {
+                templateUrl: "adminupload.html",
+                
 
             })
             .otherwise({

@@ -21,7 +21,7 @@ exports.create = async function (req, res) {
   card.otherInfo = req.body.specialInfo.split(", ");
   card.imgFront = req.files['front'][0].filename;
   card.imgBack = req.files['back'][0].filename;
-  var path = './client/images/';
+  var path = './admin/images/';
   var front = card.imgFront;
   var back = card.imgBack;
 
