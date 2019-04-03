@@ -28,14 +28,14 @@ module.exports.init = function() {
   app.use(methodOverride('_method'));
 
   /* Serve static files */
-
-    app.use('/', express.static(__dirname + '/../../client'));
     app.use('/admin', express.static(__dirname + '/../../admin'));
 
+    app.use('/', express.static(__dirname + '/../../client'));
+
   //Handle file uploads
-    app.post(path.resolve('../', '/fileupload'), upload.fields([{ name: 'front' }, { name: 'back' }]), function (req, res, next) {
+    app.post('/fileupload', upload.fields([{ name: 'front' }, { name: 'back' }]), function (req, res, next) {
         cardsController.create(req, res);
-        res.redirect(path.resolve('/#!/'));
+        res.redirect(path.resolve('/admin/#!/uploads'));
     });
 
   /* Use the cards router for requests to the api */
@@ -44,12 +44,13 @@ module.exports.init = function() {
  
 
   /* Go to homepage for all routes not specified */
-  app.all('/*', function(req, res) {
-    res.sendFile(path.resolve('/../../client/index.html'));
-    });
     app.all('/admin/*', function (req, res) {
         res.sendFile(path.resolve('/../../admin/index.html'));
     });
+  app.all('/*', function(req, res) {
+    res.sendFile(path.resolve('/../../client/index.html'));
+    });
+
 
   return app;
 };
