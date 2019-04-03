@@ -44,11 +44,11 @@ module.exports.init = function() {
  
 
   /* Go to homepage for all routes not specified */
-    app.all('/admin/*', function (req, res) {
-        res.sendFile(path.resolve('/../../admin/index.html'));
+   app.all('/admin/*', function (req, res) {
+        res.sendFile(path.resolve('../admin/index.html'));
     });
   app.all('/*', function(req, res) {
-    res.sendFile(path.resolve('/../../client/index.html'));
+    res.sendFile(path.resolve('../client/index.html'));
     });
 
 
