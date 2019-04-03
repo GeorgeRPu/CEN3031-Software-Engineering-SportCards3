@@ -33,9 +33,9 @@ module.exports.init = function() {
   app.use('/', express.static(__dirname + '/../../client'));
 
   //Handle file uploads
-  app.post('/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
+  app.post('/admin/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
     cardsController.create(req, res);
-    res.redirect(path.resolve('/#!/adminupload'));
+    res.redirect(path.resolve('/admin/#!/upload'));
   });
 
   /* Use the cards router for requests to the api */
