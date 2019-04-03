@@ -66,39 +66,19 @@ exports.update = function (req, res) {
     if (err) throw err;
     console.log(req.body);
 
-    if (req.body.imgFront)
-      card.imgFront = req.body.imgFront;
+    const cardProperties = [
+      'imgFront', 'imgBack',
+      'playerName', 'year',
+      'manufacturer', 'cardNum',
+      'team', 'otherInfo',
+      'quantity', 'sold',
+      'display'
+    ];
 
-    if (req.body.imgBack)
-      card.imgBack = req.body.imgBack;
-
-    if (req.body.playerName)
-      card.playerName = req.body.playerName;
-
-    if (req.body.year)
-      card.year = req.body.year;
-
-    if (req.body.manufacturer)
-      card.manufacturer = req.body.manufacturer;
-
-    if (req.body.cardNum)
-      card.cardNum = req.body.cardNum;
-
-    if (req.body.team)
-      card.team = req.body.team;
-
-    if (req.body.otherInfo)
-      card.otherInfo = req.body.otherInfo;
-
-    if (req.body.quantity)
-      card.quantity = req.body.quantity;
-
-    if (req.body.sold)
-      card.sold = req.body.sold;
-
-    if (req.body.display)
-      card.display = req.body.display;
-
+    for (const property of cardProperties) {
+      if (req.body[property])
+        card[property] = req.body[property];
+    }
 
     card.updated_at = new Date();
 
