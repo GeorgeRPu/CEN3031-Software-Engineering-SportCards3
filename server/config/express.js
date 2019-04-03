@@ -28,28 +28,26 @@ module.exports.init = function() {
   app.use(methodOverride('_method'));
 
   /* Serve static files */
-    app.use('/admin', express.static(__dirname + '/../../admin'));
+  app.use('/admin', express.static(__dirname + '/../../admin'));
 
-    app.use('/', express.static(__dirname + '/../../client'));
+  app.use('/', express.static(__dirname + '/../../client'));
 
-  //Handle file uploads
-    app.post('/fileupload', upload.fields([{ name: 'front' }, { name: 'back' }]), function (req, res, next) {
-        cardsController.create(req, res);
-        res.redirect(path.resolve('/admin/#!/uploads'));
-    });
+//Handle file uploads
+  app.post('/admin/fileupload', upload.fields([{ name: 'front' }, { name: 'back' }]), function (req, res, next) {
+      cardsController.create(req, res);
+      res.redirect(path.resolve('/admin/#!/upload'));
+  });
 
   /* Use the cards router for requests to the api */
   app.use('/api/cards', cardsRouter);
 
- 
-
   /* Go to homepage for all routes not specified */
-   app.all('/admin/*', function (req, res) {
-        res.sendFile(path.resolve('../admin/index.html'));
-    });
-  app.all('/*', function(req, res) {
-    res.sendFile(path.resolve('../client/index.html'));
-    });
+ app.all('/admin/*', function (req, res) {
+      res.sendFile(path.resolve('../admin/index.html'));
+  });
+app.all('/*', function(req, res) {
+  res.sendFile(path.resolve('../client/index.html'));
+  });
 
 
   return app;
