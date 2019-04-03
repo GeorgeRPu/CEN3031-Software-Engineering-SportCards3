@@ -130,13 +130,6 @@ angular.module('sportsCardApp')
                         })
                 }, 300)
 
-
-
-
             }
-
-
-
-
 
         });
