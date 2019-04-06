@@ -28,7 +28,7 @@ exports.create = async function (req, res) {
   var x = 0;
 
   async function fixOrientation(imgPath, callback){
-    await rotate.rotate(imgPath, {quality: 85}, (error, buffer, orientation, dimensions, quality) => {
+    await rotate.rotate(imgPath, {quality: 50}, (error, buffer, orientation, dimensions, quality) => {
       if (error) {
         console.log(error);
         callback(imgPath, saveCard);
@@ -45,7 +45,7 @@ exports.create = async function (req, res) {
   async function upload(imgPath, callback){
     await bucket.upload(imgPath, {
       metadata: {
-        contentType: "image/*",
+        contentType: "image/png",
         cacheControl: 'public, max-age=31536000'
       }
     });
