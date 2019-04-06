@@ -34,7 +34,7 @@ exports.create = async function (req, res) {
         callback(imgPath, saveCard);
         return;
       }
-      //fs.unlinkSync(imgPath);
+      fs.unlinkSync(imgPath);
       fs.writeFile(imgPath + '-1', buffer, function(err, result){
         if(err) console.log(err);
       })
@@ -50,7 +50,7 @@ exports.create = async function (req, res) {
       }
     });
 
-    //fs.unlinkSync(imgPath);
+    fs.unlinkSync(imgPath);
     x++;
     callback();
 
