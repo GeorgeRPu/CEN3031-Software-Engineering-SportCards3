@@ -8,8 +8,8 @@ const {
 } = require('@google-cloud/storage');
 const storage = new Storage({
     projectId: 'sports-cards-test',
-    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS) //Uncomment this for heroku, comment out for localhost
-    //keyFilename: './server/config/Sports-Cards-Test-d297e1566afe.json' //Uncomment this for localhost, comment out for heroku
+    //credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS) //Uncomment this for heroku, comment out for localhost
+    keyFilename: './server/config/Sports-Cards-Test-d297e1566afe.json' //Uncomment this for localhost, comment out for heroku
 });
 
 
@@ -35,7 +35,7 @@ exports.create = async function (req, res) {
         return;
       }
       fs.unlinkSync(imgPath);
-      fs.writeFile(imgPath + '-1', buffer, function(err, result){
+      fs.writeFile(imgPath, buffer, function(err, result){
         if(err) console.log(err);
       })
       callback(imgPath, saveCard);
