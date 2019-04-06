@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
   Card = require('../models/cards.js'),
-  fs = require('fs');
+  fs = require('fs'),
+  rotate = require('jpeg-autorotate');
 
 const {
   Storage
@@ -24,30 +25,51 @@ exports.create = async function (req, res) {
   var path = './admin/images/';
   var front = card.imgFront;
   var back = card.imgBack;
+  var x = 0;
 
-  await bucket.upload(path + front, {
-    metadata: {
-      contentType: "image/jpg",
-      cacheControl: 'public, max-age=31536000'
+  async function fixOrientation(imgPath, callback){
+    await rotate.rotate(imgPath, {}, (error, buffer, orientation, dimensions, quality) => {
+      if (error) {
+        console.log(error);
+        callback(imgPath, saveCard);
+        return;
+      }
+      fs.unlinkSync(imgPath);
+      fs.writeFile(imgPath, buffer, function(err, result){
+        if(err) console.log(err);
+      })
+      callback(imgPath, saveCard);
+    })
+  }
+
+  async function upload(imgPath, callback){
+    await bucket.upload(imgPath, {
+      metadata: {
+        contentType: "image/*",
+        cacheControl: 'public, max-age=31536000'
+      }
+    });
+
+    fs.unlinkSync(imgPath);
+    x++;
+    callback();
+
+  }
+
+  async function saveCard(){
+    if(x==2){
+      card.save(function (err) {
+        console.log("saving");
+        if (err) {
+          console.log(err);
+          res.status(400).send(err);
+        };
+      })
     }
-  });
-  await bucket.upload(path + back, {
-    metadata: {
-      contentType: "image/jpg",
-      cacheControl: 'public, max-age=31536000'
-    }
-  });
+  }
 
-  fs.unlinkSync(path + front);
-  fs.unlinkSync(path + back);
-
-  card.save(function (err) {
-    console.log("saving");
-    if (err) {
-      console.log(err);
-      res.status(400).send(err);
-    };
-  });
+  fixOrientation(path + front, upload);
+  fixOrientation(path + back, upload);
 };
 
 /* Read */
