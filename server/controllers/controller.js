@@ -28,14 +28,14 @@ exports.create = async function (req, res) {
   var x = 0;
 
   async function fixOrientation(imgPath, callback){
-    await rotate.rotate(imgPath, {}, (error, buffer, orientation, dimensions, quality) => {
+    await rotate.rotate(imgPath, {quality: 85}, (error, buffer, orientation, dimensions, quality) => {
       if (error) {
         console.log(error);
         callback(imgPath, saveCard);
         return;
       }
-      fs.unlinkSync(imgPath);
-      fs.writeFile(imgPath, buffer, function(err, result){
+      //fs.unlinkSync(imgPath);
+      fs.writeFile(imgPath + '-1', buffer, function(err, result){
         if(err) console.log(err);
       })
       callback(imgPath, saveCard);
@@ -50,7 +50,7 @@ exports.create = async function (req, res) {
       }
     });
 
-    fs.unlinkSync(imgPath);
+    //fs.unlinkSync(imgPath);
     x++;
     callback();
 
