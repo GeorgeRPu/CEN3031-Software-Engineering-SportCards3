@@ -2,25 +2,24 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
 
 
 
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
-            .when("/", {
+            .when("/admin/", {
                 templateUrl: "login.html",
 
             })
-            .when("/catalog", {
-                templateUrl: "admincatalog.html",
+            .when("/admin/catalog", {
+                templateUrl: "./admincatalog.html",
                 controller: 'cardController'
 
             })
-            .when("/upload", {
+            .when("/admin/upload", {
                 templateUrl: "adminupload.html",
-                
+
 
             })
             .otherwise({
                 templateUrl: "about.html"
-            });
+            })
+        $locationProvider.html5Mode({enabled: true, requireBase: false});
     });
-
-

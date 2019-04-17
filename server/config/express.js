@@ -35,18 +35,18 @@ module.exports.init = function() {
   //Handle file uploads
   app.post('/admin/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
     cardsController.create(req, res);
-    res.redirect(path.resolve('/admin/#!/upload'));
+    res.redirect(path.resolve('/admin/upload'));
   });
 
   /* Use the cards router for requests to the api */
   app.use('/api/cards', cardsRouter);
 
   /* Go to homepage for all routes not specified */
- app.all('/admin/*', function (req, res) {
-      res.sendFile(path.resolve('../admin/index.html'));
+  app.all('/admin/*', function (req, res) {
+      res.sendFile(path.resolve(__dirname + '/../../admin/index.html'));
   });
-app.all('/*', function(req, res) {
-  res.sendFile(path.resolve('../client/index.html'));
+  app.all('/*', function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
   });
 
 

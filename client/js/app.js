@@ -2,7 +2,7 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
 
 
 
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/", {
                 templateUrl: "about.html",
@@ -15,7 +15,6 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
             })
             .otherwise({
                 templateUrl: "about.html"
-            });
+            })
+        $locationProvider.html5Mode({enabled: true, requireBase: false});
     });
-
-
