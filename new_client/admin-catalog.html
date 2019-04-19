@@ -1,0 +1,115 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Catalog</title>
+</head>
+
+<div class="container">
+
+  <div class="row">
+    <h1>Admin Catalog</h1>
+  </div>
+
+  <div class="row">
+    <div class="search">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Filter by keyword..." aria-label="Search" ng-model="cardSearchText" ng-change="searchCards(cardSearchText)">
+      </form>
+    </div>
+    <div class="dropdown" style="margin-right:50px;margin-top:5%">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort By
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" ng-click="orderBy('playerName',false)">Name (A-Z)</a>
+        <a class="dropdown-item" ng-click="orderBy('playerName',true)">Name (Z-A)</a>
+        <a class="dropdown-item" ng-click="orderBy('year',false)">Year (Oldest first)</a>
+        <a class="dropdown-item" ng-click="orderBy('year',true)">Year (Newest first)</a>
+        <a class="dropdown-item" ng-click="orderBy('manufacturer',false)">Manufacturer (A-Z)</a>
+        <a class="dropdown-item" ng-click="orderBy('manufacturer',true)">Manufacturer (Z-A)</a>
+        <a class="dropdown-item" ng-click="orderBy('team',false)">Team (A-Z)</a>
+        <a class="dropdown-item" ng-click="orderBy('team',true)">Team (Z-A)</a>
+      </div>
+    </div>
+  </div>
+
+  <div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+    <div class="row">
+      <div class="card space" ng-repeat="card in shownCards">
+        <img class="card-img-top" id={{card._id}} src="https://storage.googleapis.com/sport-cards-bucket/{{card.imgFront}}" ng-click="showCardDetails(card)" data-toggle="modal" data-target="#cardDetailsModal">
+        <div class="cardInfo" data-toggle="modal" data-target="#cardDetailsModal" ng-click="showCardDetails(card)">
+          <h5><strong>Name:</strong> {{card.playerName}}</h5>
+          <p><strong>ID:</strong> {{card._id}}</p>
+          <p><strong>Year:</strong> {{card.year}}</p>
+          <p><strong>Manufacturer:</strong> {{card.manufacturer}}</p>
+          <br>
+        </div>
+        <button type="button" id="deleteCardButton" data-dismiss="modal" class="btn btn-danger btn-sm" ng-click="deleteCard(card)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<iframe name="hiddenFrame" class="hide"></iframe>
+
+<div class="modal fade" id="cardDetailsModal" tabindex="-1" role="dialog" aria-labelledby="cardDetailsModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{cardName}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-7 " id="leftsidemodal">
+              <div class="row ">
+                <img src="https://storage.googleapis.com/sport-cards-bucket/{{cardImgBack}}" class="img-responsive" id="magnified" alt="Card Image Not Found">
+              </div>
+              <div class="row">
+                <div class="col" id="info">
+                  <form id="cardEditForm" method="POST" action={{"/api/cards/"+cardId+"?_method=PUT"}} target="hiddenFrame" ng-submit="cardEdited()">
+                    <input type="hidden" name="_METHOD" value="PUT">
+
+                    <strong>ID:</strong>
+                    <input class="form-control input-sm" value={{cardId}} id="inputsm" type="text" disabled>
+
+                    <strong>Player Name:</strong>
+                    <input class="form-control input-sm" ng-model="cardName" id="inputsm" name="playerName" type="text">
+
+                    <strong>Year:</strong>
+                    <input class="form-control input-sm" ng-model="cardYear" id="inputsm" name="year" type="text">
+
+                    <strong>Manufacturer:</strong>
+                    <input class="form-control input-sm" ng-model="cardManufacturer" id="inputsm" name="manufacturer" type="text">
+
+                    <strong>Team:</strong>
+                    <input class="form-control input-sm" ng-model="cardTeam" id="inputsm" name="team" type="text">
+
+                    <strong>Card #:</strong>
+                    <input class="form-control input-sm" ng-model="cardNum" id="inputsm" name="cardNum" type="text">
+
+                    <strong>Special Info:</strong>
+                    <input class="form-control input-sm" ng-model="cardOtherInfo" id="inputsm" name="otherInfo" type="text">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <img src="https://storage.googleapis.com/sport-cards-bucket/{{cardImgFront}}" class="img-responsive" id="imgfront" alt="Card Image Not Found">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input class="btn btn-success" form="cardEditForm" type="submit" value="Save changes">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</div>
