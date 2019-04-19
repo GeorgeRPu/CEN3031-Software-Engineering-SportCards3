@@ -1,6 +1,6 @@
 var app = angular.module("sportsCardApp", ["ngRoute", "infinite-scroll"]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when("/", {
       templateUrl: "about.html",
@@ -50,6 +50,7 @@ app.config(function($routeProvider) {
     .otherwise({
       redirectTo: "/"
     });
+  $locationProvider.html5Mode({enabled: true, requireBase: false});
 });
 
 app.run(["$rootScope", "$location", "$route", "AuthService",
