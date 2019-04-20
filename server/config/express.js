@@ -6,9 +6,13 @@ var path = require('path'),
     config = require('./config'),
     cardsRouter = require('../routes/routes.js');
     cardsController = require('../controllers/controller.js'),
+    usersController = require('../controllers/users-controller.js'),
     multer = require('multer'),
-    upload = multer({dest: 'admin/images/'});
-    methodOverride = require('method-override');
+    upload = multer({dest: 'admin/images/'}),
+    methodOverride = require('method-override'),
+    session = require('express-session'),
+    uuidv4 = require('uuid/v4');
+
 
 module.exports.init = function() {
   //connect to database
@@ -24,6 +28,12 @@ module.exports.init = function() {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
+  app.use(session({
+    secret: 'Enigmatic Potato',
+    resave: true,
+    saveUninitialized: false
+  }));
+
   //to be able to send PUT requests with form
   app.use(methodOverride('_method'));
 
@@ -38,8 +48,43 @@ module.exports.init = function() {
     res.redirect(path.resolve('/admin/upload'));
   });
 
+  app.post('/admin/createuser', function(req, res){
+    usersController.createUser(req, res);
+    res.redirect(path.resolve('/admin'));
+  })
+
+  app.post('/adminlogin', function(req, res){
+    usersController.authenticate(req, res);
+    req.session.sessionId = uuidv4();
+    console.log(req.session.sessionId);
+    res.redirect(path.resolve('/admin'));
+  })
+
+  app.post('/admin/logout', function(req, res){
+    if (req.session) {
+    // delete session object
+      req.session.destroy(function(err) {
+        if(err) {
+          return next(err);
+        }
+        else {
+          console.log('Logged out');
+          return res.redirect('/');
+        }
+      });
+    }
+  })
+
   /* Use the cards router for requests to the api */
   app.use('/api/cards', cardsRouter);
+
+  app.all('/admin/catalog', usersController.requireLogin, function (req, res) {
+      res.sendFile(path.resolve(__dirname + '/../../admin/index.html'));
+  });
+
+  app.all('/admin/upload', usersController.requireLogin, function (req, res) {
+      res.sendFile(path.resolve(__dirname + '/../../admin/index.html'));
+  });
 
   /* Go to homepage for all routes not specified */
   app.all('/admin/*', function (req, res) {
