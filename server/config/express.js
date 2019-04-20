@@ -54,10 +54,17 @@ module.exports.init = function() {
   })
 
   app.post('/adminlogin', function(req, res){
-    usersController.authenticate(req, res);
-    req.session.sessionId = uuidv4();
-    console.log(req.session.sessionId);
-    res.redirect(path.resolve('/admin'));
+    usersController.authenticate(req, res, function(error, user){
+      if(error || !user){
+        console.log("error");
+        res.redirect(path.resolve('/login'));
+      }
+      else {
+        req.session.sessionId = uuidv4();
+        console.log(req.session.sessionId);
+        res.redirect(path.resolve('/admin'));
+      }
+    });
   })
 
   app.post('/admin/logout', function(req, res){

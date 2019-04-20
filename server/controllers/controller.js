@@ -9,7 +9,7 @@ const {
 const storage = new Storage({
     projectId: 'sports-cards-test',
     //credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS) //Uncomment this for heroku, comment out for localhost
-    keyFilename: './server/config/Sports-Cards-Test-d297e1566afe.json' //Uncomment this for localhost, comment out for heroku
+    keyFilename: './server/config/Sports-Cards-Test-2c43a0d8f8ab.json' //Uncomment this for localhost, comment out for heroku
 });
 
 

@@ -17,31 +17,37 @@ exports.createUser = function(req, res){
   //console.log(user);
 }
 
-exports.authenticate = function(req, res){
+exports.authenticate = function(req, res, callback){
   console.log(req.body);
   User.findOne({ username: req.body.username })
   .exec(function (err, user){
     if(err){
-      return;
+      return callback(err);
     }
     else if(!user){
-      console.log('User not found!');
+      console.log("user not found");
+      var err = new Error('User not found.')
       err.status = 401;
-      return;
+      return callback(err);
+      //res.redirect(path.resolve('/admin/login'));
     }
     bcrypt.compare(req.body.password, user.password, function(err, result){
       if(result === true){
         console.log('Authenticated!');
+        return callback(null, user);
       }
     })
   });
 }
 
 exports.requireLogin = function(req, res, next){
+  console.log("REQUIRE LOGIN");
+  console.log(req.session);
+  console.log(req.session.sessionId);
   if(req.session && req.session.sessionId){
     return next();
   }
   else{
-    res.redirect(path.resolve('/admin/login'));
+    res.redirect(path.resolve('/login'));
   }
 }
