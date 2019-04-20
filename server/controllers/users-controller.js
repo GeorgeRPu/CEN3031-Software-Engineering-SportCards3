@@ -14,9 +14,9 @@ exports.createUser = function(req, res){
       console.log('User saved successfully!');
     }
   });
-  //console.log(user);
 }
 
+//Authenticate user login info
 exports.authenticate = function(req, res, callback){
   console.log(req.body);
   User.findOne({ username: req.body.username })
@@ -25,12 +25,12 @@ exports.authenticate = function(req, res, callback){
       return callback(err);
     }
     else if(!user){
-      console.log("user not found");
+      console.log("User not found.");
       var err = new Error('User not found.')
       err.status = 401;
       return callback(err);
-      //res.redirect(path.resolve('/admin/login'));
     }
+    //Compare hashed password typed on login to hashed password stored in DB
     bcrypt.compare(req.body.password, user.password, function(err, result){
       if(result === true){
         console.log('Authenticated!');
@@ -40,10 +40,8 @@ exports.authenticate = function(req, res, callback){
   });
 }
 
+//Middleware that blocks access to certain pages if not logged in
 exports.requireLogin = function(req, res, next){
-  console.log("REQUIRE LOGIN");
-  console.log(req.session);
-  console.log(req.session.sessionId);
   if(req.session && req.session.sessionId){
     return next();
   }

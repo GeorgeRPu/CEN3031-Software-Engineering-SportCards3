@@ -48,18 +48,22 @@ module.exports.init = function() {
     res.redirect(path.resolve('/admin/upload'));
   });
 
+  //Registers a new user after /admin/register form is filled out
   app.post('/admin/createuser', function(req, res){
     usersController.createUser(req, res);
     res.redirect(path.resolve('/admin'));
   })
 
+  //Handles login
   app.post('/adminlogin', function(req, res){
+    //Authenticate the user
     usersController.authenticate(req, res, function(error, user){
       if(error || !user){
         console.log("error");
         res.redirect(path.resolve('/login'));
       }
       else {
+        //Set session ID to keep the user logged in until they logout or close the browser window
         req.session.sessionId = uuidv4();
         console.log(req.session.sessionId);
         res.redirect(path.resolve('/admin'));
