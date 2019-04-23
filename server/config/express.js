@@ -38,9 +38,18 @@ module.exports.init = function() {
   app.use(methodOverride('_method'));
 
   /* Serve static files */
-  app.use('/admin', express.static(__dirname + '/../../admin'));
+  //app.use('/admin', express.static(__dirname + '/../../admin'));
 
   app.use('/', express.static(__dirname + '/../../client'));
+
+  app.use('/admin', function(req, res, next){
+    if(req.session && req.session.sessionId){
+      return express.static(__dirname + '/../../admin')
+    }
+    else {
+      res.redirect(path.resolve('/login'));
+    }
+  })
 
   //Handle file uploads
   app.post('/admin/fileupload', upload.fields([{name:'front'}, {name:'back'}]), function(req, res, next){
@@ -97,8 +106,7 @@ module.exports.init = function() {
       res.sendFile(path.resolve(__dirname + '/../../admin/index.html'));
   });
 
-  /* Go to homepage for all routes not specified */
-  app.all('/admin/*', function (req, res) {
+  app.get('/admin/*', usersController.requireLogin, function (req, res) {
       res.sendFile(path.resolve(__dirname + '/../../admin/index.html'));
   });
   app.all('/*', function(req, res) {

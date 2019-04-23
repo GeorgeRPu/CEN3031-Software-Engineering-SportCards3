@@ -17,10 +17,6 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
                 templateUrl: "adminupload.html",
 
             })
-            .when("/admin/login", {
-                templateUrl: "admin-login.html",
-                
-            })
             .when("/admin/register", {
                 templateUrl: "admin-register.html",
             })

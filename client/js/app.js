@@ -14,7 +14,7 @@ angular.module('sportsCardApp', ["ngRoute", 'infinite-scroll'])
 
             })
             .when("/login", {
-                templateUrl: "/admin/admin-login.html",
+                templateUrl: "admin-login.html",
             })
             .otherwise({
                 templateUrl: "about.html"
