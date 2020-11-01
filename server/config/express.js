@@ -11,7 +11,7 @@ var path = require('path'),
     upload = multer({dest: 'admin/images/'}),
     methodOverride = require('method-override'),
     session = require('express-session'),
-    uuidv4 = require('uuid/v4');
+    {v4: uuidv4} = require('uuid');
 
 
 module.exports.init = function() {
