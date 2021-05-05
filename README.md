@@ -1,10 +1,11 @@
 # SportCards3
-Software Engineering project group 3.
 
-Install dependencies after cloning with `npm install`
+CEN3031 Software Engineering project group 3. Heroku: `https://sportfoliooo.herokuapp.com`.
 
-Start server with command: `node server.js`
+# Dependencies
 
-Hosted locally at: `http://localhost:8080/`.
+Install dependencies after cloning with `npm install`.
 
-Heroku: `https://sportfoliooo.herokuapp.com`
+# Running Instructions.
+
+Start the server with the command `node server.js`. Go to `http://localhost:8080/` to view the website.
